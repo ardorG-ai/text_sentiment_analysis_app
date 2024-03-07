@@ -1,1 +1,3 @@
-# text_sentiment_analysis_app
+# Automated Text Sentiment Analysis Webapp
+
+Link to the webapp: https://textsentimentanalysisapp.streamlit.app/
