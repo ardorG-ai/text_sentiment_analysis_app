@@ -17,6 +17,42 @@ Figure 1
 <p>
 Not forgetting, sometimes data teams are overwhelmed, lacking the bandwidth needed to curate reports swiftly for timely decision-making. Hence, the objective of this project is to develop a tool that empowers users to analyse sentiment across various platforms more efficiently, provided they have access to the requisite raw data. By offering a versatile webapp, brands can gain comprehensive insights that accurately reflect the nuances of their target markets.</p>
 
+## Tools Used
+1.	Upload Feature: 
+The upload feature serves as the primary avenue for users to upload raw data and have it analysed. This functionality is crucial as it allows users to upload data collected from various platforms, enabling a diverse range of data sources to be analysed seamlessly. The integration of the upload feature is facilitated by utilizing the pandas library, which enables the efficient reading of Excel (.xlsx) files.
+
+2.	TextBlob Library: 
+The TextBlob Python library is utilized for sentiment analysis due to its robustness and ease of implementation. It offers a ready-built library for processing textual data and provides a consistent API for common natural language processing (NLP) tasks such as sentiment analysis. By leveraging TextBlob, the sentiment polarity of each comment can be calculated efficiently. (Great Learning, 2022)
+
+3.	Cleantext Module: 
+The Cleantext module is employed to clean the text data. It facilitates various text preprocessing tasks such as removing extra spaces, stopwords, lowercase conversion, and punctuation removal. Additionally, Cleantext tokenizes the cleaned text into words and generates a DataFrame containing word counts, which forms the basis for further analysis.
+
+4.	Collections Counter: 
+The Collections Counter is utilized to count the occurrences of each word within the text data. This functionality enables the creation of a DataFrame that organizes words based on their frequency of occurrence, providing insights into the most commonly used words within the dataset.
+
+5.	Streamlit: 
+Streamlit is chosen as the framework for developing the web application due to its simplicity, flexibility, and real-time preview capabilities. Streamlit allows for the rapid creation of interactive dashboards directly from Python scripts, enabling seamless integration with data analysis workflows. Its intuitive interface streamlines the development process and allows preview and test the web application in real-time, saving valuable development time and effort.
+
+6.	Slider for Threshold Adjustment: 
+The inclusion of a slider for threshold adjustment provides users with greater flexibility and control over the sentiment analysis process. By allowing users to adjust the threshold dynamically, they can fine-tune the categorization of sentiments as positive, negative, or neutral, thereby enhancing the accuracy and relevance of the analysis results.
+
+7.	F1 Score Calculation: 
+The F1 score is calculated using the sklearn.metrics module to evaluate the performance of the sentiment analysis model. The F1 score provides a comprehensive measure of the model's precision and recall, balancing both metrics to assess overall performance accurately. By incorporating the F1 score calculation, users can gauge the effectiveness of the sentiment analysis model and make informed decisions based on its performance metrics.
+
+8.	Visualization Tools (Matplotlib and scipy.stats): 
+Matplotlib and scipy.stats are utilized for data visualization, enabling the creation of insightful visualizations such as bell curves, donut charts and horizontal bar charts. These visualizations offer a clear and intuitive representation of sentiment distribution and word sentiment analysis, allowing users to interpret the analysis results effectively and derive actionable insights from the data.
+
+9. Integration with YouTube: 
+The decision to integrate YouTube into the web application is supported by insights from Meltwater’s Digital 2024 Global Overview Report, which highlights this platform as one of the most widely used social platforms globally. Integrating YouTube functionality expands the reach of the sentiment analysis tool, enabling users to analyse sentiment across diverse content. Facebook was not selected due to the restriction of only moderators/admins of a page is allowed to fetch comments.
+
+<img width="696" alt="Picture 2" src="https://github.com/Kfkyyian1/text_sentiment_analysis_app/assets/146427900/52b0147a-a9b9-4000-903a-025189b1b82e"> <br>
+Figure 3
+(2024 Global Digital Report, 2024, pp. 232)
+<p>
+The selection of these tools and technologies is driven by their ability to facilitate efficient data analysis, provide intuitive user experiences, and enable seamless integration with external platforms, ultimately contributing to the development of the sentiment analysis web application.
+</p>
+
+
 ## Proposed Methodology
 The proposed methodology focuses on leveraging the automation system to enhance efficiency, decision-making capabilities, and brand perception.
 
