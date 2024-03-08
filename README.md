@@ -81,3 +81,6 @@ Vidito. (2023). GitHub - Vidito/textblob_sentiment_analysis: A streamlit python 
 app to analyze sentiment in a CSV file and add the sentiment values to the 
 file. GitHub. https://github.com/Vidito/textblob_sentiment_analysis?tab=readme-ov-file
 
+Global Digital Report. (2024). Meltwater. pp. 232 & 233. https://www.meltwater.com/en/global-digital-trends
+
+
