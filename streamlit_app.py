@@ -130,16 +130,18 @@ def page_introduction():
     3. Facilitate effective marketing strategies by gauging brand perception.
 
     **How to Start:**
-    1. Clean Text: Enter the text you want to analyze and clean it for sentiment analysis.
+    Input your text to receive sentiment polarity and subjectivity scores.
     *(i.e. The 10 cakes bought from XYZ Bakery were very delicious. I LOVE IT!)*
-    2. Perform Sentiment Analysis: Input your text to receive sentiment polarity and subjectivity scores.
+
+    Polarity: Polarity score measures the sentiment expressed in text, ranging from negative to positive. It quantifies the degree of emotional tone conveyed by words or phrases in a text, indicating whether the sentiment is negative, neutral, or positive.
+    Subjectivity: Subjectivity score indicates the degree to which a piece of text expresses opinions, emotions, or personal beliefs rather than factual information. It quantifies the subjectiveness of language, ranging from purely objective to highly subjective/opinionated expressions.
     """)
-    pre = st.text_input('1. Clean Text: ')
-    if pre:
-         st.write(cleantext.clean(pre, clean_all= False, extra_spaces=True ,
-                                 stopwords=True ,lowercase=True ,numbers=True , punct=True))
+    #pre = st.text_input('1. Clean Text: ')
+    #if pre:
+         #st.write(cleantext.clean(pre, clean_all= False, extra_spaces=True ,
+                                 #stopwords=True ,lowercase=True ,numbers=True , punct=True))
         
-    text = st.text_input('2. Perform Sentiment Analysis: ')
+    text = st.text_input('Perform Sentiment Analysis: ')
     if text:
         blob = TextBlob(text)
         st.write('Polarity: ', blob.sentiment.polarity)
