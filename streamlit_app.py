@@ -159,12 +159,14 @@ def page_introduction():
 def page_analyze_xlsx():
     st.title('Analyze Text In XLSX File')
     st.write('''
+        Upload your XLSX file and visualize the data.
+        
         **Disclaimer:** Before uploading your file, please ensure the column containing the text to analyze is labeled as **comments** in the header.
     
         Failure to adhere to these guidelines may result in unexpected behavior during analysis.
         ''')
     #- Ensure that the column containing dates is labeled as **date** and the column is in text or date format.
-    #st.write("""Upload your XLSX file and visualize the data.""")
+    
     upl = st.file_uploader('Upload File')
 
 
