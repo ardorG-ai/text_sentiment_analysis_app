@@ -159,7 +159,7 @@ def page_introduction():
 def page_analyze_xlsx():
     st.title('Analyze Text In XLSX File')
     st.write('''
-        Upload your XLSX file and visualize the data.
+        Upload your XLSX file and analyze sentiment through visualisation.
         
         **Disclaimer:** Before uploading your file, please ensure the column containing the text to analyze is labeled as **comments** in the header. Failure to adhere to these guidelines may result in unexpected behavior during analysis.
         ''')
@@ -334,7 +334,7 @@ def page_analyze_xlsx():
 def page_analyze_youtube():
     st.title('Analyze YouTube Video Comments')
     st.write("""
-    Enter the YouTube Video ID to fetch comments and analyze sentiment.
+    Enter the YouTube Video ID to fetch comments and analyze sentiment through visualisation.
     """)
 
     video_id = st.text_input("https://www.youtube.com/watch?v= [Video ID]", value="",
