@@ -132,9 +132,6 @@ def page_introduction():
     **How to Start:**
     Input your text to receive sentiment polarity and subjectivity scores.
     *(i.e. The 10 cakes bought from XYZ Bakery were very delicious. I LOVE IT!)*
-
-    Polarity: Polarity score measures the sentiment expressed in text, ranging from negative to positive. It quantifies the degree of emotional tone conveyed by words or phrases in a text, indicating whether the sentiment is negative, neutral, or positive.
-    Subjectivity: Subjectivity score indicates the degree to which a piece of text expresses opinions, emotions, or personal beliefs rather than factual information. It quantifies the subjectiveness of language, ranging from purely objective to highly subjective/opinionated expressions.
     """)
     #pre = st.text_input('1. Clean Text: ')
     #if pre:
@@ -146,6 +143,12 @@ def page_introduction():
         blob = TextBlob(text)
         st.write('Polarity: ', blob.sentiment.polarity)
         st.write('Subjectivity: ', blob.sentiment.subjectivity)
+
+    st.write("""
+    Polarity: Polarity score measures the sentiment expressed in text, ranging from negative to positive. It quantifies the degree of emotional tone conveyed by words or phrases in a text, indicating whether the sentiment is negative, neutral, or positive.
+    
+    Subjectivity: Subjectivity score indicates the degree to which a piece of text expresses opinions, emotions, or personal beliefs rather than factual information. It quantifies the subjectiveness of language, ranging from purely objective to highly subjective/opinionated expressions.
+    """)
 
     st.write("""
     **Navigate to more tools on the left < < <**
