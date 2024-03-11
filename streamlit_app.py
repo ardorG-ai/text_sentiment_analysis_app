@@ -59,6 +59,10 @@ def clean_and_count(text):
     # Tokenize the cleaned text into words
     words = cleaned_text.split()
 
+    # Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    words = [word for word in words if word.lower() not in stop_words]
+
     # Count the occurrences of each word
     word_counts = Counter(words)
 
@@ -131,7 +135,7 @@ def page_introduction():
 
     **How to Start:**
     1. Clean Text: Enter the text you want to analyze and clean it for sentiment analysis.
-    *(i.e. The 10 cakes bought from XYZ Bakery were very delicious. I LOVE IT!)*
+    *(i.e. I LOVE all the 10 cupcakes cakes!)*
     2. Perform Sentiment Analysis: Input your text to receive sentiment polarity and subjectivity scores.
     """)
     pre = st.text_input('1. Clean Text: ')
