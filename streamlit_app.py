@@ -136,8 +136,8 @@ def page_introduction():
     """)
     pre = st.text_input('1. Clean Text: ')
     if pre:
-         #st.write(cleantext.clean(pre, clean_all= False, extra_spaces=True ,
-                                 #stopwords=True ,lowercase=True ,numbers=True , punct=True))
+         st.write(cleantext.clean(pre, clean_all= False, extra_spaces=True ,
+                                 stopwords=True ,lowercase=True ,numbers=True , punct=True))
         
     text = st.text_input('Perform Sentiment Analysis: ')
     if text:
