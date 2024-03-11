@@ -3,6 +3,8 @@ from textblob import TextBlob
 import pandas as pd
 import streamlit as st
 import cleantext
+import nltk
+from nltk.corpus import stopwords
 from collections import Counter
 import matplotlib.pyplot as plt
 import numpy as np
@@ -52,6 +54,8 @@ def fetch_youtube_comments(video_id):
     return pd.DataFrame(comments, columns=['author', 'published_at', 'updated_at', 'like_count', 'text'])
 
 # Function to clean text and count word occurrences
+# Download NLTK stopwords if not already downloaded
+nltk.download('stopwords')
 @st.cache_data
 def clean_and_count(text):
     cleaned_text = cleantext.clean(text, clean_all=False, extra_spaces=True,
