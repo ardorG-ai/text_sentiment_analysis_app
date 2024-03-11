@@ -130,11 +130,12 @@ def page_introduction():
     3. Facilitate effective marketing strategies by gauging brand perception.
 
     **How to Start:**
-    Input your text to receive sentiment polarity and subjectivity scores.
+    1. Clean Text: Enter the text you want to analyze and clean it for sentiment analysis.
     *(i.e. The 10 cakes bought from XYZ Bakery were very delicious. I LOVE IT!)*
+    2. Perform Sentiment Analysis: Input your text to receive sentiment polarity and subjectivity scores.
     """)
-    #pre = st.text_input('1. Clean Text: ')
-    #if pre:
+    pre = st.text_input('1. Clean Text: ')
+    if pre:
          #st.write(cleantext.clean(pre, clean_all= False, extra_spaces=True ,
                                  #stopwords=True ,lowercase=True ,numbers=True , punct=True))
         
