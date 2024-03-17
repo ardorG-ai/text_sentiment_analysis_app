@@ -80,7 +80,7 @@ def clean_and_count(text):
     # Sort the DataFrame by count in descending order
     word_df = word_df.sort_values(by='Count', ascending=False)
 
-    return word_df, timestamps
+    return word_df
 
 # Function to analyze sentiment and return sentiment label - for uploading function
 @st.cache_data
