@@ -139,7 +139,7 @@ def page_introduction():
 
     **How to Start:**
     1. Clean Text: Enter the text you want to analyze and clean it for sentiment analysis.
-    *(i.e. I LOVE all the 10 cupcakes cakes!)*
+    *(i.e. I LOVE all the 10 cupcakes!)*
     2. Perform Sentiment Analysis: Input your text to receive sentiment polarity and subjectivity scores.
     """)
     pre = st.text_input('1. Clean Text: ')
