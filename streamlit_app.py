@@ -58,8 +58,14 @@ def fetch_youtube_comments(video_id):
 nltk.download('stopwords')
 @st.cache_data
 def clean_and_count(text):
+    # Define a regex pattern to match timestamps (e.g., 00:00)
+    timestamp_pattern = r'\b\d{1,2}:\d{2}\b'
+
+    # Replace timestamps with placeholder to preserve them during cleaning
+    cleaned_text = re.sub(timestamp_pattern, 'TIMESTAMP', text)
+    
     cleaned_text = cleantext.clean(text, clean_all=False, extra_spaces=True,
-                                   stopwords=True, lowercase=True, numbers=True, punct=True)
+                                   stopwords=True, lowercase=True, numbers=False, punct=True)
     # Tokenize the cleaned text into words
     words = cleaned_text.split()
 
@@ -70,6 +76,13 @@ def clean_and_count(text):
     # Additional removal of specific words like "would" and "im"
     words = [word for word in words if word.lower() not in ["would", "im"]]
 
+    # Replace the placeholder with original timestamps
+    words = [re.sub('TIMESTAMP', lambda m: m.group(0).replace('_', ':'), word) for word in words]
+
+    # Extract timestamps from HTML tags
+    soup = BeautifulSoup(text, 'html.parser')
+    timestamps = [a.text.strip() for a in soup.find_all('a')]
+
     # Count the occurrences of each word
     word_counts = Counter(words)
 
@@ -79,7 +92,7 @@ def clean_and_count(text):
     # Sort the DataFrame by count in descending order
     word_df = word_df.sort_values(by='Count', ascending=False)
 
-    return word_df
+    return word_df, timestamps
 
 # Function to analyze sentiment and return sentiment label - for uploading function
 @st.cache_data
