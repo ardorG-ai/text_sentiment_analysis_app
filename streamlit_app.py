@@ -11,7 +11,6 @@ import numpy as np
 from scipy.stats import norm  # to plot bell curve
 from sklearn.metrics import f1_score, precision_score, recall_score # to calculate F1 score, precision and recall score
 import re
-from bs4 import BeautifulSoup
 
 # Disable the PyplotGlobalUseWarning
 st.set_option('deprecation.showPyplotGlobalUse', False)
@@ -60,12 +59,6 @@ def fetch_youtube_comments(video_id):
 nltk.download('stopwords')
 @st.cache_data
 def clean_and_count(text):
-    # Define a regex pattern to match timestamps (e.g., 00:00)
-    timestamp_pattern = r'\b\d{1,2}:\d{2}\b'
-
-    # Replace timestamps with placeholder to preserve them during cleaning
-    cleaned_text = re.sub(timestamp_pattern, 'TIMESTAMP', text)
-    
     cleaned_text = cleantext.clean(text, clean_all=False, extra_spaces=True,
                                    stopwords=True, lowercase=True, numbers=False, punct=True)
     # Tokenize the cleaned text into words
@@ -77,13 +70,6 @@ def clean_and_count(text):
 
     # Additional removal of specific words like "would" and "im"
     words = [word for word in words if word.lower() not in ["would", "im"]]
-
-    # Replace the placeholder with original timestamps
-    words = [re.sub('TIMESTAMP', lambda m: m.group(0).replace('_', ':'), word) for word in words]
-
-    # Extract timestamps from HTML tags
-    soup = BeautifulSoup(text, 'html.parser')
-    timestamps = [a.text.strip() for a in soup.find_all('a')]
 
     # Count the occurrences of each word
     word_counts = Counter(words)
@@ -115,33 +101,6 @@ def analyze_yt(x):
         return 'Negative'
     else:
         return 'Neutral'
-
-# Preprocess comments to handle timestamps in YouTube video comments
-def preprocess_comments(text):
-    # Split the text by newline characters to handle multiple comments
-    comments = text.split('\n')
-    formatted_comments = []
-
-    for comment in comments:
-        # Split the comment by space to handle multiple words
-        words = comment.split()
-        formatted_comment = []
-
-        for word in words:
-            # Check if the word matches a timestamp pattern (e.g., 00:00)
-            if ':' in word and all(char.isdigit() or char == ':' for char in word):
-                # Format the timestamp as desired, for example, enclosing it in parentheses
-                formatted_word = f"({word})"
-            else:
-                formatted_word = word
-
-            formatted_comment.append(formatted_word)
-
-        # Join the words back to form the formatted comment
-        formatted_comments.append(' '.join(formatted_comment))
-
-    # Join the formatted comments with newline characters
-    return '\n'.join(formatted_comments)
 
 # Page 1: Introduction & Background
 def page_introduction():
@@ -372,9 +331,6 @@ def page_analyze_youtube():
                 try:
                     # Fetch comments from YouTube API
                     comments = fetch_youtube_comments(video_id)
-
-                    # Preprocess comments to handle timestamps
-                    comments['text'] = comments['text'].apply(preprocess_comments)
 
                     # Create DataFrame from comments
                     df = pd.DataFrame(comments, columns=['author', 'published_at', 'updated_at', 'like_count', 'text'])
