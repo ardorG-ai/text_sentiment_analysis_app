@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import norm  # to plot bell curve
 from sklearn.metrics import f1_score, precision_score, recall_score # to calculate F1 score, precision and recall score
+import re
+from bs4 import BeautifulSoup
 
 # Disable the PyplotGlobalUseWarning
 st.set_option('deprecation.showPyplotGlobalUse', False)
