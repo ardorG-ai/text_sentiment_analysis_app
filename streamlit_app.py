@@ -67,6 +67,9 @@ def clean_and_count(text):
     stop_words = set(stopwords.words('english'))
     words = [word for word in words if word.lower() not in stop_words]
 
+    # Additional removal of specific words like "would" and "im"
+    words = [word for word in words if word.lower() not in ["would", "im"]]
+
     # Count the occurrences of each word
     word_counts = Counter(words)
 
@@ -369,7 +372,6 @@ def page_analyze_youtube():
                     #df['score'] = df['text'].apply(lambda x: format(float(TextBlob(x).sentiment.polarity), '.4f'))
                     df['score'] = df['text'].apply(lambda x: float(TextBlob(x).sentiment.polarity))
                 
-
                     # Calculate mean and standard deviation of sentiment scores
                     mean_score = df['score'].mean()
                     std_dev = df['score'].std()
