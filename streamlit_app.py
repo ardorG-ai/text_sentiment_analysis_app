@@ -361,7 +361,7 @@ def page_analyze_youtube():
                     st.write(f"Standard Deviation: {round(std_dev, 4)}")
 
                     # Step 3: Display Results
-                    df['text'] = df['text'].apply(preprocess_comments)  # Preprocess comments before displaying
+                    # df['text'] = df['text'].apply(preprocess_comments)  # Preprocess comments before displaying
                     df['analysis'] = df['score'].apply(lambda x: analyze_yt(x))
                 
                     st.write("**Analysis Results**")
