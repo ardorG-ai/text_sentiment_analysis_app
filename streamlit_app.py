@@ -343,14 +343,14 @@ def page_analyze_xlsx():
                word_timeseries = time_series_data[word]
                plt.plot(word_timeseries, label=word)
 
-        # Customize the plot
+            # Customize the plot
             plt.xlabel('Date')
             plt.ylabel('Count')
             plt.legend(title='Neutral Words')
             plt.grid(True)
 
-        # Display the plot
-        #st.pyplot(plt)
+            # Display the plot
+            st.pyplot(plt)
 
     st.write("""
     **Navigate to more tools on the left < < <**
