@@ -328,20 +328,26 @@ def page_analyze_xlsx():
             plot_by_month = st.checkbox('Plot by Month', value=False)
 
             if plot_by_month:
-            #Plot by month
+                # Plot by month
                 time_series_data = df.groupby([df['date'].dt.to_period('M'), 'analysis']).size().unstack(fill_value=0)
             else:
-            #Plot by year
+                # Plot by year
                 time_series_data = df.groupby([df['date'].dt.to_period('Y'), 'analysis']).size().unstack(fill_value=0)
+
+            # Print debug information
+            print("Time Series Data:")
+            print(time_series_data)
+            print("Selected Neutral Words:")
+            print(selected_neutral_words)
 
             # Initialize a figure for plotting
             plt.figure(figsize=(10, 6))
 
             # Plot time series analysis for each selected word
             for word in selected_neutral_words:
-            # Filter time series data for the selected word
-               word_timeseries = time_series_data[word]
-               plt.plot(word_timeseries, label=word)
+                # Filter time series data for the selected word
+                word_timeseries = time_series_data[word]
+                plt.plot(word_timeseries, label=word)
 
             # Customize the plot
             plt.xlabel('Date')
@@ -351,6 +357,7 @@ def page_analyze_xlsx():
 
             # Display the plot
             st.pyplot(plt)
+
 
     st.write("""
     **Navigate to more tools on the left < < <**
