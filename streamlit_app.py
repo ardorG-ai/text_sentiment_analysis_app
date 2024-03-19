@@ -329,10 +329,10 @@ def page_analyze_xlsx():
 
             if plot_by_month:
             #Plot by month
-            time_series_data = df.groupby([df['date'].dt.to_period('M'), 'analysis']).size().unstack(fill_value=0)
+                time_series_data = df.groupby([df['date'].dt.to_period('M'), 'analysis']).size().unstack(fill_value=0)
             else:
             #Plot by year
-            time_series_data = df.groupby([df['date'].dt.to_period('Y'), 'analysis']).size().unstack(fill_value=0)
+                time_series_data = df.groupby([df['date'].dt.to_period('Y'), 'analysis']).size().unstack(fill_value=0)
 
             # Initialize a figure for plotting
             plt.figure(figsize=(10, 6))
