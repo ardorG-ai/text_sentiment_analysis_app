@@ -310,6 +310,48 @@ def page_analyze_xlsx():
             plt.show()
             st.pyplot(plt)
 
+            PLOT 4: Time series plot of neutral words
+            # Remove missing dates records
+            df = df.dropna(subset=['date'])
+
+            # Convert year-only text dates to datetime
+            df['date'] = pd.to_datetime(df['date'], format='%Y', errors='coerce', utc=None)
+            df = df.dropna(subset=['date'])  # Drop NaT values after conversion
+
+            # Allow users to select neutral words
+            selected_neutral_words = st.multiselect('Select Neutral Words', word_df['Word'][:10])
+
+            # Filter the DataFrame to include only selected neutral words
+            selected_word_df = word_df[word_df['Word'].isin(selected_neutral_words)]
+
+            # Checkbox to toggle between plotting by month and plotting by year
+            plot_by_month = st.checkbox('Plot by Month', value=False)
+
+            if plot_by_month:
+            Plot by month
+            time_series_data = df.groupby([df['date'].dt.to_period('M'), 'analysis']).size().unstack(fill_value=0)
+            else:
+            Plot by year
+            time_series_data = df.groupby([df['date'].dt.to_period('Y'), 'analysis']).size().unstack(fill_value=0)
+
+            # Initialize a figure for plotting
+            plt.figure(figsize=(10, 6))
+
+            # Plot time series analysis for each selected word
+            for word in selected_neutral_words:
+            # Filter time series data for the selected word
+               word_timeseries = time_series_data[word]
+               plt.plot(word_timeseries, label=word)
+
+        # Customize the plot
+            plt.xlabel('Date')
+            plt.ylabel('Count')
+            plt.legend(title='Neutral Words')
+            plt.grid(True)
+
+        # Display the plot
+        #st.pyplot(plt)
+
     st.write("""
     **Navigate to more tools on the left < < <**
     """)
