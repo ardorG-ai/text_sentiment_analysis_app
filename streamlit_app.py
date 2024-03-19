@@ -310,7 +310,7 @@ def page_analyze_xlsx():
             plt.show()
             st.pyplot(plt)
 
-            PLOT 4: Time series plot of neutral words
+            # PLOT 4: Time series plot of neutral words
             # Remove missing dates records
             df = df.dropna(subset=['date'])
 
