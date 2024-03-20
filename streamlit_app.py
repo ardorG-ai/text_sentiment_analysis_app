@@ -315,7 +315,7 @@ def page_analyze_xlsx():
             df = df.dropna(subset=['date'])
 
             # Convert year-only text dates to datetime
-            df['date'] = pd.to_datetime(df['date'], format='%Y', errors='coerce', utc=None)
+            df['date'] = pd.to_datetime(df['date'], format='%Y', errors='coerce')
             df = df.dropna(subset=['date'])  # Drop NaT values after conversion
 
             # Get the top 10 neutral words
@@ -351,6 +351,8 @@ def page_analyze_xlsx():
             
             # Display the plot
             st.pyplot(plt)
+
+            print(time_series_data.columns)
 
 
     st.write("""
