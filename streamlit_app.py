@@ -336,11 +336,11 @@ def page_analyze_xlsx():
             
             # Define colors for each word
             colors = plt.cm.tab10(np.linspace(0, 1, len(top_10_neutral_words)))
-            
+
             # Plot time series analysis for each selected word
-            for i, word in enumerate(top_10_neutral_words):
+            for i, word in enumerate(top_10_neutral_words['Word']):
                 # Filter time series data for the selected word
-                word_timeseries = time_series_data[top_10_neutral_words]
+                word_timeseries = time_series_data[word]
                 plt.plot(word_timeseries, label=word, color=colors[i])
             
             # Customize the plot
