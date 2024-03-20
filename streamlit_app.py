@@ -340,7 +340,7 @@ def page_analyze_xlsx():
             # Plot time series analysis for each selected word
             for i, word in enumerate(top_10_neutral_words):
                 # Filter time series data for the selected word
-                word_timeseries = time_series_data[word]
+                word_timeseries = time_series_data[top_10_neutral_words]
                 plt.plot(word_timeseries, label=word, color=colors[i])
             
             # Customize the plot
