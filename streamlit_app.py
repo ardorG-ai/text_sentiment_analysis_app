@@ -331,15 +331,20 @@ def page_analyze_xlsx():
                 # Plot by year
                 time_series_data = df.groupby([df['date'].dt.to_period('Y'), 'analysis']).size().unstack(fill_value=0)
             
-            # Plot time series analysis for neutral words
-            time_series_data.index = time_series_data.index.astype(str)  # Convert index to string for proper display
-            time_series_data.plot(kind='line', marker='o', figsize=(10, 6), color=colors)
+            # Filter time series data to include only the top 10 neutral words
+            top_10_neutral_words = word_df[(word_df['Count'] > 0) & (word_df['word_score'] >= -suggested_threshold) & (word_df['word_score'] <= suggested_threshold)].head(10)['Word']
+            time_series_data = time_series_data[top_10_neutral_words]
+            
+            # Plot time series analysis for each selected word
+            plt.figure(figsize=(10, 6))
+            for word in time_series_data.columns:
+                plt.plot(time_series_data.index, time_series_data[word], label=word)
+            
+            # Customize the plot
             plt.xlabel('Date')
             plt.ylabel('Count')
-            # plt.title('Neutral Words Analysis Over Time')
             plt.legend(title='Neutral Words')
             plt.grid(True)
-            # plt.xticks(rotation=45)  # Uncomment this line if you want to rotate x-axis labels
             
             # Display the plot
             st.pyplot(plt)
