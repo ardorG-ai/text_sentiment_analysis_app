@@ -319,7 +319,7 @@ def page_analyze_xlsx():
             df = df.dropna(subset=['date'])  # Drop NaT values after conversion
 
             # Get the top 10 neutral words
-            top_neutral_words = word_df[word_df['word_score'] == 0].head(10)['Word']
+            top_10_neutral_words = word_df[(word_df['Count'] > 0) & (word_df['word_score'] >= -suggested_threshold) & (word_df['word_score'] <= suggested_threshold)].head(10)
 
             # Checkbox to toggle between plotting by month and plotting by year
             plot_by_month = st.checkbox('Plot by Month', value=False)
@@ -335,10 +335,10 @@ def page_analyze_xlsx():
             plt.figure(figsize=(10, 6))
             
             # Define colors for each word
-            colors = plt.cm.tab10(np.linspace(0, 1, len(top_neutral_words)))
+            colors = plt.cm.tab10(np.linspace(0, 1, len(top_10_neutral_words)))
             
             # Plot time series analysis for each selected word
-            for i, word in enumerate(top_neutral_words):
+            for i, word in enumerate(top_10_neutral_words):
                 # Filter time series data for the selected word
                 word_timeseries = time_series_data[word]
                 plt.plot(word_timeseries, label=word, color=colors[i])
